@@ -9,4 +9,4 @@ Proof of achievements of milestones
   * [Report](/m4/report.md) - [PDF](/m4/Bitcoin_Compatibility_Report_Milestone_4.pdf)
 * M5 - [Report](https://github.com/Maetti79/Begin-Fund12/blob/main/milestone-5-report.html) (Done ✔️)
 * [Milestone 6: Launch / Final Close-out](/Milestone6.md)
-  * [Report](/m6/report.html) - [PDF](</m6/Begin Wallet - Catalyst Fund 12 Milestone 6 Final Close-out Report.pdf>) - [Video](https://www.youtube.com/shorts/rZRVoh-R6IY)
+  * [Report](/m6/report.html) - [PDF](</m6/Begin Wallet - Catalyst Fund 12 Milestone 6 Final Close-out Report.pdf>) - [Video](https://www.youtube.com/watch?v=tbz0UIBLAoc)
