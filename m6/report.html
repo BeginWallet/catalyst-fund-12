@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Begin Wallet V2 - Catalyst Fund 12 Milestone 6 Final Close-out Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0abab5;
+            --primary-dark: #089490;
+            --primary-light: #00e5ff;
+            --secondary: #ced0ff;
+            --bitcoin: #f7931a;
+            --voting: #9c27b0;
+            --biometric: #ff5722;
+            --shopify: #95bf47;
+            --background-dark: #141414;
+            --background-light: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --error: #f44336;
+            --card-bg: #1e1e2f;
+            --border-color: #2a2a3e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--background-dark) 0%, var(--background-light) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--background-dark);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 20px; }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--primary);
+            color: var(--background-dark);
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 4px;
+        }
+
+        .badge-final { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: var(--background-dark); }
+
+        .info-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .info-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .info-table td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            width: 200px;
+        }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section h3 { font-size: 1.1rem; margin: 20px 0 10px; color: var(--text-primary); }
+
+        .milestone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .milestone-card {
+            background: var(--background-dark);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--primary);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .milestone-card.m1 { border-top-color: var(--voting); }
+        .milestone-card.m2 { border-top-color: var(--biometric); }
+        .milestone-card.m3 { border-top-color: var(--shopify); }
+        .milestone-card.m4 { border-top-color: var(--bitcoin); }
+
+        .milestone-card:hover { transform: translateY(-4px); }
+
+        .milestone-number {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--primary);
+            color: var(--background-dark);
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .milestone-card.m1 .milestone-number { background: var(--voting); color: white; }
+        .milestone-card.m2 .milestone-number { background: var(--biometric); color: white; }
+        .milestone-card.m3 .milestone-number { background: var(--shopify); color: white; }
+        .milestone-card.m4 .milestone-number { background: var(--bitcoin); color: white; }
+
+        .milestone-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .milestone-card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 12px; }
+
+        .test-list {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .test-list li {
+            padding: 6px 0;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .test-list li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 12px;
+        }
+
+        .status-pass { background: rgba(76, 175, 80, 0.2); color: var(--success); }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        th { background: var(--background-dark); color: var(--primary); font-weight: 600; }
+        tr:hover { background: rgba(10, 186, 181, 0.05); }
+
+        .test-scenario {
+            background: var(--background-dark);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .test-scenario-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .test-scenario-steps {
+            margin-left: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .test-scenario-steps li { margin: 6px 0; }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .metric-card {
+            background: var(--background-dark);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--primary); }
+        .metric-label { font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px; }
+
+        .summary-banner {
+            background: linear-gradient(135deg, rgba(10, 186, 181, 0.1) 0%, rgba(0, 229, 255, 0.1) 100%);
+            border: 1px solid var(--primary);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .summary-banner h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+            color: var(--text-secondary);
+        }
+
+        footer a { color: var(--primary); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .section { padding: 20px; }
+            .milestone-grid { grid-template-columns: 1fr; }
+        }
+        .link-list { list-style: none; margin-top: 8px; }
+        .link-list li { padding: 6px 0; color: var(--text-secondary); font-size: 0.9rem; }
+        .link-list a, .section p a, td a { color: var(--primary-light); text-decoration: none; word-break: break-all; }
+        .section p { color: var(--text-secondary); margin-bottom: 12px; }
+        .section ul.plain { margin: 8px 0 12px 20px; color: var(--text-secondary); }
+        .section ul.plain li { margin: 6px 0; }
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .section, .milestone-card, .test-scenario { break-inside: avoid; }
+            .milestone-card:hover { transform: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">B</div>
+            <h1>Begin Wallet V2</h1>
+            <p class="subtitle">Catalyst Fund 12 - Milestone 6 Final Close-out Report</p>
+            <div>
+                <span class="badge badge-final">Launch in Production</span>
+                <span class="badge">Project Close-out</span>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>Project Information</h2>
+            <table class="info-table">
+                <tr><td>Project ID</td><td>1200038</td></tr>
+                <tr><td>Project Title</td><td>Begin Wallet Version 2 by Francis, Fluid and IAMX for Voting, Biometric Seedphrase, Payment Module WooCommerce, Wallet can handle Bitcoin</td></tr>
+                <tr><td>Project URL</td><td><a href="https://milestones.projectcatalyst.io/projects/1200038">milestones.projectcatalyst.io/projects/1200038</a></td></tr>
+                <tr><td>Challenge</td><td>F12: Cardano Use Cases: Product</td></tr>
+                <tr><td>Project Manager</td><td>Francis Luz</td></tr>
+                <tr><td>Budget</td><td>ADA 390,000.00</td></tr>
+                <tr><td>Funds Distributed</td><td>ADA 331,500.00 (before this milestone)</td></tr>
+                <tr><td>Start Date</td><td>August 12, 2024</td></tr>
+                <tr><td>Completion Date</td><td>November 2026</td></tr>
+                <tr><td>Milestone</td><td>Milestone 6 - Launch (Final Milestone)</td></tr>
+                <tr><td>Status</td><td><span class="status-indicator status-pass"><span class="status-dot"></span>Live in production</span></td></tr>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2>Milestone 6 Scope</h2>
+            <p>Milestone 6 launches every functionality delivered in Milestones 1-4 on live / production (no test environment), in the Begin Wallet (Chrome) and via partners or on WooCommerce, and closes the project with a public final close-out report and a public final close-out video.</p>
+
+            <div class="summary-banner">
+                <h3>✓ All Four Modules Delivered</h3>
+                <p>Voting, Biometric Seedphrase and Bitcoin run on Cardano and Bitcoin mainnet in the public release of Begin Wallet. BeginPay for WooCommerce runs on a beta test store, as set out in the approved milestone clarification.</p>
+            </div>
+
+            <div class="metric-grid">
+                <div class="metric-card"><div class="metric-value">6/6</div><div class="metric-label">Milestones Delivered</div></div>
+                <div class="metric-card"><div class="metric-value">4/4</div><div class="metric-label">Modules Delivered</div></div>
+                <div class="metric-card"><div class="metric-value">2</div><div class="metric-label">Mainnets (ADA + BTC)</div></div>
+                <div class="metric-card"><div class="metric-value">100%</div><div class="metric-label">Project Completion</div></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Production Release</h2>
+            <table>
+                <thead><tr><th>Channel</th><th>Where</th><th>Status</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Begin Wallet (Chrome)</strong></td><td><a href="https://chrome.google.com/webstore/detail/begin-wallet/nhbicdelgedinnbcidconlnfeionhbml">Chrome Web Store</a>, public release v2.6.4</td><td>✓ Live</td></tr>
+                    <tr><td><strong>BeginPay for WooCommerce</strong></td><td>BeginPay plugin v2.3 on a WooCommerce beta test store</td><td>✓ Done (beta test store)</td></tr>
+                    <tr><td><strong>Open source core</strong></td><td><a href="https://github.com/BeginWallet/begin-core">github.com/BeginWallet/begin-core</a></td><td>✓ Public</td></tr>
+                    <tr><td><strong>Website</strong></td><td><a href="https://beginwallet.app">beginwallet.app</a></td><td>✓ Live</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2>Milestone Outputs in Production</h2>
+
+            <div class="milestone-grid">
+                <div class="milestone-card m1">
+                    <div class="milestone-number">M1 - VOTING</div>
+                    <h4>Voting Integration</h4>
+                    <p>On-chain voting through Begin's dApp Store rating system. Every vote is recorded on Cardano mainnet under metadata label 1668, registered in CIP-10.</p>
+                    <ul class="test-list">
+                        <li>User registration for voting</li>
+                        <li>Voting on items, recorded on-chain</li>
+                        <li>Voting results display</li>
+                    </ul>
+                    <span class="status-indicator status-pass"><span class="status-dot"></span>Live</span>
+                </div>
+
+                <div class="milestone-card m2">
+                    <div class="milestone-number">M2 - BIOMETRICS</div>
+                    <h4>Biometric Seedphrase</h4>
+                    <p>Face capture in reference to ISO/IEC 19794-5, seedphrase derived from face descriptors by multi-capture consensus, passwordless login and transaction authorization.</p>
+                    <ul class="test-list">
+                        <li>Biometric enrollment</li>
+                        <li>Seedphrase generation</li>
+                        <li>Passwordless login</li>
+                        <li>Transaction authorization</li>
+                    </ul>
+                    <span class="status-indicator status-pass"><span class="status-dot"></span>Live</span>
+                </div>
+
+                <div class="milestone-card m3">
+                    <div class="milestone-number">M3 - WOOCOMMERCE</div>
+                    <h4>Payment Module for WooCommerce</h4>
+                    <p>BeginPay gateway: ADA at checkout, live fiat-to-ADA rate, QR code with merchant address and exact amount, on-chain verification via Blockfrost. <em style="color: var(--warning);">Originally planned as Shopify; moved to WooCommerce after Shopify closed external payment integrations.</em></p>
+                    <ul class="test-list">
+                        <li>Select ADA at checkout</li>
+                        <li>Exchange rate (USD / EUR to ADA)</li>
+                        <li>QR code generation</li>
+                        <li>Payment shown in checkout</li>
+                    </ul>
+                    <span class="status-indicator status-pass"><span class="status-dot"></span>Done · Beta test store</span>
+                </div>
+
+                <div class="milestone-card m4">
+                    <div class="milestone-number">M4 - BITCOIN</div>
+                    <h4>Bitcoin Compatibility</h4>
+                    <p>Bitcoin account under the same seed as Cardano, SegWit (p2wpkh) and Taproot (p2tr) addresses, live fee estimation, signing and broadcast on Bitcoin mainnet.</p>
+                    <ul class="test-list">
+                        <li>Transaction creation with live fee</li>
+                        <li>Transaction signing</li>
+                        <li>Transaction broadcasting</li>
+                    </ul>
+                    <span class="status-indicator status-pass"><span class="status-dot"></span>Live</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Acceptance Criteria for Milestone 6</h2>
+            <table>
+                <thead><tr><th>Criteria</th><th>Result</th><th>Evidence</th></tr></thead>
+                <tbody>
+                    <tr><td>M1: register for voting, cast votes on two items (each recorded), view results</td><td>✓ Pass</td><td><a href="https://youtube.com/shorts/UYDm3VHUKFo">Voting video</a> · <a href="https://cexplorer.io/tx/f9e94ed3b6cc0d7fa5680ff65944c5215f956a424ae6838c412135bc4822c4ae/metadata#data">On-chain vote</a></td></tr>
+                    <tr><td>M2: biometric enrollment, generate seedphrase, passwordless login, authorize a transaction</td><td>✓ Pass</td><td><a href="https://youtu.be/4TxPNYtkBH8">Biometric video</a></td></tr>
+                    <tr><td>M3: select ADA, see ADA amount from shop currency, scan QR, complete payment in checkout</td><td>✓ Pass</td><td><a href="https://youtu.be/5M4gZ3a1jQo">WooCommerce video</a></td></tr>
+                    <tr><td>M4: create BTC transaction with live fee, sign it, broadcast with miner fee</td><td>✓ Pass</td><td><a href="https://youtube.com/shorts/BXALveJ8X1k">Bitcoin video</a> · <a href="https://mempool.space/tx/90e1e5760db378aa2101b655af4299193236b930d7850e38b06d96c7993a01c3">BTC tx</a></td></tr>
+                    <tr><td>All functionality launched on live / production, no test environment</td><td>✓ Pass</td><td>Begin Wallet (Chrome) v2.6.4 on mainnet (M1, M2, M4). M3 BeginPay on a WooCommerce beta test store, per the approved clarification that the plugin is used in beta-test phase before official WooCommerce approval.</td></tr>
+                    <tr><td>Final close-out report is publicly available</td><td>✓ Pass</td><td>This report, <a href="https://github.com/BeginWallet/catalyst-fund-12">BeginWallet/catalyst-fund-12</a></td></tr>
+                    <tr><td>Final close-out video is publicly available</td><td>✓ Pass</td><td><a href="https://www.youtube.com/watch?v=tbz0UIBLAoc">Close-out video</a> · <a href="https://www.youtube.com/shorts/rZRVoh-R6IY">Integrated walkthrough</a></td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2>Final Close-out</h2>
+
+            <h3>Challenge KPIs</h3>
+            <ul class="plain">
+                <li>Bring real Cardano use cases into an everyday wallet: governance-style voting, payments at online shops, and multi-chain holdings.</li>
+                <li>Lower the barrier to self-custody with passwordless, biometric access instead of a written seedphrase.</li>
+            </ul>
+
+            <h3>Project KPIs</h3>
+            <ul class="plain">
+                <li>Four modules delivered: Voting, Biometric Seedphrase and Bitcoin live in production; WooCommerce Payments done on a beta test store.</li>
+                <li>Votes recorded on Cardano mainnet under a registered CIP-10 metadata label (1668).</li>
+                <li>Bitcoin and Cardano managed under one seedphrase, with transactions on both mainnets.</li>
+                <li>All six milestones delivered and documented publicly.</li>
+            </ul>
+
+            <h3>Key achievements</h3>
+            <ul class="plain">
+                <li>CIP-10 metadata label 1668 merged for on-chain dApp ratings (<a href="https://github.com/cardano-foundation/CIPs/pull/1012">CIPs PR #1012</a>).</li>
+                <li>Seedphrase generated from face data, with passwordless login and signing for both ADA and BTC.</li>
+                <li>BeginPay for WooCommerce with a ~10KB in-browser Cardano transaction builder, replacing the 27MB serialization library.</li>
+                <li>Bitcoin module published in the open source <a href="https://github.com/BeginWallet/begin-core/tree/main/src/core/chain/bitcoin">Begin Core</a>.</li>
+            </ul>
+
+            <h3>Key learnings</h3>
+            <ul class="plain">
+                <li>Platform risk is real: Shopify closed external payment integrations, so the payment module moved to WooCommerce, which stays open for merchants.</li>
+                <li>Face data is noisy. A stable seedphrase needs consensus over many captures, not a single scan.</li>
+                <li>One seed across chains needs careful derivation path management and separate indexers per network.</li>
+            </ul>
+
+            <h3>Next steps</h3>
+            <ul class="plain">
+                <li>Keep all four modules maintained in Begin's public releases.</li>
+                <li>Move BeginPay for WooCommerce from the beta test store to official WooCommerce approval and merchant stores.</li>
+                <li>Bring the biometric authorization and payment flows into Begin's next app for everyday payments.</li>
+            </ul>
+
+            <h3>Final thoughts</h3>
+            <p>Thank you to the Project Catalyst community, the reviewers and our partners Fluid and IAMX. This grant let a small team ship voting, biometric access and Bitcoin into one self-custody wallet that people use today, and build a WooCommerce payment module ready for merchants.</p>
+        </section>
+
+        <section class="section">
+            <h2>Links & Resources</h2>
+            <ul class="link-list">
+                <li>Close-out video: <a href="https://www.youtube.com/watch?v=tbz0UIBLAoc">youtube.com/watch?v=tbz0UIBLAoc</a></li>
+                <li>Integrated walkthrough (all modules): <a href="https://www.youtube.com/shorts/rZRVoh-R6IY">youtube.com/shorts/rZRVoh-R6IY</a></li>
+                <li>Begin Wallet (Chrome): <a href="https://chrome.google.com/webstore/detail/begin-wallet/nhbicdelgedinnbcidconlnfeionhbml">Chrome Web Store</a></li>
+                <li>Milestone reports 1 and 4: <a href="https://github.com/BeginWallet/catalyst-fund-12">github.com/BeginWallet/catalyst-fund-12</a></li>
+                <li>Milestone reports 2, 3 and 5: <a href="https://github.com/Maetti79/Begin-Fund12">github.com/Maetti79/Begin-Fund12</a></li>
+                <li>Begin Core (open source): <a href="https://github.com/BeginWallet/begin-core">github.com/BeginWallet/begin-core</a></li>
+                <li>CIP-10 label 1668: <a href="https://github.com/cardano-foundation/CIPs/pull/1012">github.com/cardano-foundation/CIPs/pull/1012</a></li>
+            </ul>
+        </section>
+
+        <footer>
+            <p><strong>Begin Wallet V2</strong> - Catalyst Fund 12 Milestone 6 (Final Close-out)</p>
+            <p>Project ID: 1200038 | Report Generated: November 2026</p>
+            <p style="margin-top: 20px;">
+                <a href="https://milestones.projectcatalyst.io/projects/1200038/milestones/6">Catalyst Milestone 6</a> |
+                <a href="https://milestones.projectcatalyst.io/projects/1200038">Full Project</a> |
+                <a href="https://beginwallet.app">beginwallet.app</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
